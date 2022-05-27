@@ -8,13 +8,13 @@ This totally neglects mobile workstations (i.e. notebooks) which are used on the
 
 In addition to that, it provides a simple form for changing the password (which of course then needs a connection to the domain controller, e.g. via VPN).
 
-It is based on the idea of (LdapPwd-Desklet)[https://github.com/schorschii/LdapPwd-Desklet] for Linux.
+It is based on the idea of [LdapPwd-Desklet](https://github.com/schorschii/LdapPwd-Desklet) for Linux.
 
 It is currently translated into English and German. I'm happy about pull requests for further translation or other improvements!
 
 ## Screenshots
-!(Windows Notification)[.github/notification.png]
-!(Password Change Window)[.github/change_pw.png]
+![Windows Notification](.github/notification.png)
+![Password Change Window](.github/change_pw.png)
 
 ## Installation
 ### Setup
