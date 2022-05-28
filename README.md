@@ -13,6 +13,8 @@ It is based on the idea of [LdapPwd-Desklet](https://github.com/schorschii/LdapP
 It is currently translated into English and German. I'm happy about pull requests for further translation or other improvements!
 
 ## Screenshots
+![Mouse Over Tooltip](.github/mouse_over_tooltip.png)
+![Context Menu](.github/context_menu.png)
 ![Windows Notification](.github/notification.png)
 ![Password Change Window](.github/change_pw.png)
 
