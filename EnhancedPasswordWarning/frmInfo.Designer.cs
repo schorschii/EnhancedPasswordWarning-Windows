@@ -105,7 +105,6 @@ namespace EnhancedPasswordWarning
             this.Controls.Add(this.txtOldPassword);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

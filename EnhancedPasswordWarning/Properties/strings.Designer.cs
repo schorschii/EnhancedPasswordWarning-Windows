@@ -97,11 +97,29 @@ namespace EnhancedPasswordWarning.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Set New Password ähnelt.
+        /// </summary>
+        internal static string create_new_password {
+            get {
+                return ResourceManager.GetString("create_new_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         /// </summary>
         internal static string error {
             get {
                 return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Exit ähnelt.
+        /// </summary>
+        internal static string exit {
+            get {
+                return ResourceManager.GetString("exit", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace EnhancedPasswordWarning.Properties {
         internal static string passwords_do_not_match {
             get {
                 return ResourceManager.GetString("passwords_do_not_match", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Refresh Expiry ähnelt.
+        /// </summary>
+        internal static string refresh_expiry {
+            get {
+                return ResourceManager.GetString("refresh_expiry", resourceCulture);
             }
         }
         

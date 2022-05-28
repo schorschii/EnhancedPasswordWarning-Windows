@@ -27,7 +27,7 @@ namespace EnhancedPasswordWarning
             InitializeComponent();
 
             // dark mode support
-            if (DarkMode.IsSystemDarkModeActive())
+            if(DarkMode.IsSystemDarkModeActive())
             {
                 DarkMode.UseImmersiveDarkMode(this.Handle);
                 this.BackColor = Color.Black;
@@ -41,7 +41,7 @@ namespace EnhancedPasswordWarning
         private void frmInfo_Load(object sender, EventArgs e)
         {
             // translations
-            this.Text = String.Format(Properties.strings.change_password_for, epw.userName);
+            this.Text = epw.userName;
             btnCancel.Text = Properties.strings.cancel;
             btnConfirm.Text = Properties.strings.ok;
             lblOldPassword.Text = Properties.strings.old_password;

@@ -15,6 +15,7 @@ namespace EnhancedPasswordWarning
         protected internal int warnDays = 0;
 
         NotifyIcon niInfo = new NotifyIcon();
+        ToolStripItem miInfo;
         frmInfo frmInfo;
 
         public EnhancedPasswordWarning()
@@ -38,8 +39,38 @@ namespace EnhancedPasswordWarning
             // init taskbar icon
             this.niInfo.Icon = Properties.Resources.key_blue;
             this.niInfo.Visible = true;
-            this.niInfo.Click += new System.EventHandler(OpenWindow);
-            this.niInfo.BalloonTipClicked += new System.EventHandler(OpenWindow);
+            this.niInfo.DoubleClick += new EventHandler(OpenWindow);
+            this.niInfo.BalloonTipClicked += new EventHandler(OpenWindow);
+
+            // init taskbar icon context menu
+            ContextMenuStrip cms = new ContextMenuStrip();
+            this.miInfo = new ToolStripMenuItem(Properties.strings.password_warning);
+            this.miInfo.Enabled = false;
+            cms.Items.Add(this.miInfo);
+
+            cms.Items.Add(new ToolStripSeparator());
+
+            ToolStripMenuItem miRefresh = new ToolStripMenuItem(Properties.strings.refresh_expiry);
+            miRefresh.Click += new EventHandler(delegate (Object o, EventArgs a)
+            {
+                RefreshExpiry(true);
+            });
+            cms.Items.Add(miRefresh);
+
+            ToolStripMenuItem miSetNewPassword = new ToolStripMenuItem(Properties.strings.create_new_password);
+            miSetNewPassword.Click += new EventHandler(OpenWindow);
+            cms.Items.Add(miSetNewPassword);
+
+            cms.Items.Add(new ToolStripSeparator());
+
+            ToolStripMenuItem miExit = new ToolStripMenuItem(Properties.strings.exit);
+            miExit.Click += new EventHandler(delegate (Object o, EventArgs a)
+            {
+                Application.Exit();
+            });
+            cms.Items.Add(miExit);
+
+            this.niInfo.ContextMenuStrip = cms;
 
             // initial refresh
             RefreshExpiry();
@@ -75,7 +106,7 @@ namespace EnhancedPasswordWarning
             return expiry.TotalDays;
         }
 
-        public void RefreshExpiry()
+        public void RefreshExpiry(bool showErrors = false)
         {
             // cached value from settings
             this.pwdExpiryUnixSecs = Properties.Settings.Default.pwdExpiryUnixSecs;
@@ -86,10 +117,18 @@ namespace EnhancedPasswordWarning
             {
                 this.pwdExpiryUnixSecs = GetPasswordExpiryLdap(this.userName);
                 Debug.WriteLine("Loaded from LDAP: " + this.pwdExpiryUnixSecs);
+                if (showErrors)
+                {
+                    MessageBox.Show(null, GetExpiryText(GetExpiryDays(this.pwdExpiryUnixSecs)), Properties.strings.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch(Exception ex)
             {
                 Debug.WriteLine("Error query LDAP: " + ex.Message);
+                if(showErrors)
+                {
+                    MessageBox.Show(null, ex.Message, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
 
             // display expiry
@@ -134,6 +173,10 @@ namespace EnhancedPasswordWarning
             }
 
             niInfo.Text = expiryText;
+            if(miInfo != null)
+            {
+                miInfo.Text = expiryText;
+            }
             if(frmInfo != null)
             {
                 frmInfo.Text = this.userName;

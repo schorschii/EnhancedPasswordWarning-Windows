@@ -129,8 +129,14 @@
   <data name="confirm_new_password" xml:space="preserve">
     <value>Neues Passwort bestätigen:</value>
   </data>
+  <data name="create_new_password" xml:space="preserve">
+    <value>Neues Passwort setzen</value>
+  </data>
   <data name="error" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Beenden</value>
   </data>
   <data name="new_password" xml:space="preserve">
     <value>Neues Passwort:</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="password_warning" xml:space="preserve">
     <value>Passwort-Warnung</value>
+  </data>
+  <data name="refresh_expiry" xml:space="preserve">
+    <value>Ablaufdatum aktualisieren</value>
   </data>
   <data name="success" xml:space="preserve">
     <value>Erfolg</value>
