@@ -10,7 +10,7 @@ In addition to that, it provides a simple form for changing the password (which 
 
 It is based on the idea of [LdapPwd-Desklet](https://github.com/schorschii/LdapPwd-Desklet) for Linux.
 
-It is currently translated into English and German. I'm happy about pull requests for further translation or other improvements!
+It is currently translated into English and German. I'm happy about pull requests for further translations (file `strings.xx.resx`, where **xx** is your language code) or other improvements!
 
 ## Screenshots
 ![Mouse Over Tooltip](.github/mouse_over_tooltip.png)
@@ -20,13 +20,13 @@ It is currently translated into English and German. I'm happy about pull request
 
 ## Installation
 ### Setup
-You can use the setup file on the latest Github release page.
+You can use the setup file on the [latest Github release](https://github.com/schorschii/EnhancedPasswordWarning-Windows/releases) page.
 
 ### Manually
 Copy the program with its libraries into the Program Files folder and create a shortcut in the all users autostart folder.
 
 ### Configuration
-You can define the limit when the program should display a warning in the configuration file `EnhancedPasswordWarning.ini`.
+You can define the limit when the program should display a warning in the configuration file `EnhancedPasswordWarning.ini` which has to be in the same folder as the executable. The default value is 14.
 ```
 [EnhancedPasswordWarning]
 warnDays=14
