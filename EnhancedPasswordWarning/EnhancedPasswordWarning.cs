@@ -12,7 +12,7 @@ namespace EnhancedPasswordWarning
         protected internal string domainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
 
         protected internal int pwdExpiryUnixSecs = 0;
-        protected internal int warnDays = 0;
+        protected internal int warnDays = 14;
 
         NotifyIcon niInfo = new NotifyIcon();
         ToolStripItem miInfo;
@@ -33,7 +33,7 @@ namespace EnhancedPasswordWarning
             } catch(Exception ex)
             {
                 // invalid configuration - use default
-                Debug.WriteLine("Unable to load .ini: " + ex.Message);
+                Debug.WriteLine("Unable to load .ini: " + ex.Message + ", using default: " + this.warnDays);
             }
 
             // init taskbar icon
@@ -117,7 +117,7 @@ namespace EnhancedPasswordWarning
             {
                 this.pwdExpiryUnixSecs = GetPasswordExpiryLdap(this.userName);
                 Debug.WriteLine("Loaded from LDAP: " + this.pwdExpiryUnixSecs);
-                if (showErrors)
+                if(showErrors)
                 {
                     MessageBox.Show(null, GetExpiryText(GetExpiryDays(this.pwdExpiryUnixSecs)), Properties.strings.success, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
