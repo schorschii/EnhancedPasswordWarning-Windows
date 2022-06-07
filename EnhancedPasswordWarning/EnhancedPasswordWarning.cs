@@ -209,11 +209,26 @@ namespace EnhancedPasswordWarning
             DirectorySearcher ds = new DirectorySearcher(de);
             ds.Filter = "(&(objectClass=User)(samaccountname=" + userName + "))";
             ds.PropertiesToLoad.Add("pwdLastSet");
+            ds.PropertiesToLoad.Add("useraccountcontrol");
             SearchResult rs = ds.FindOne();
             if(rs == null)
             {
                 throw new Exception("User not found");
             }
+
+            if(rs.GetDirectoryEntry().Properties["useraccountcontrol"].Value == null
+                || rs.GetDirectoryEntry().Properties["useraccountcontrol"].Count != 1)
+            {
+                throw new Exception("Query error: useraccountcontrol is not set");
+            }
+            // check UF_DONT_EXPIRE_PASSWD flag
+            if(((int)rs.GetDirectoryEntry().Properties["useraccountcontrol"][0] & (int)65536) > 0)
+            {
+                Properties.Settings.Default.pwdExpiryUnixSecs = 0;
+                Properties.Settings.Default.Save();
+                return 0;
+            }
+
             if(rs.GetDirectoryEntry().Properties["pwdLastSet"].Value == null
                 || rs.GetDirectoryEntry().Properties["pwdLastSet"].Count != 1)
             {
